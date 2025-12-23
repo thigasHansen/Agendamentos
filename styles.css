@@ -1,0 +1,182 @@
+:root {
+  --bg: rgba(13, 23, 30, 1);
+  --text: #e9eef3;
+  --muted: #a7b3bf;
+  --accent: #6AA9FF;
+  --danger: #ff6a6a;
+  --success: #3cc47c;
+  --card: #13202b;
+  --border: #1f2f3d;
+  --limit: 6000000; /* Daily limit; easy to edit */
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.topbar {
+  display: grid;
+  grid-template-columns: 160px 1fr 380px;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo-wrap { display: flex; align-items: center; }
+.logo { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; }
+
+.month-nav {
+  display: grid;
+  grid-template-columns: 64px 1fr 64px;
+  align-items: center;
+  gap: 8px;
+}
+.month-nav h1 {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+.month-nav button {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+.month-nav button:hover { background: #0f1a22; }
+
+.day-summary {
+  display: flex; justify-content: flex-end; gap: 16px; align-items: center;
+}
+.summary-item .label { color: var(--muted); margin-right: 6px; }
+#sumRemaining { color: var(--success); }
+#sumUsed { color: var(--accent); }
+#sumTotal { color: var(--text); }
+
+.card {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.card h2 { margin-top: 0; }
+.card input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #0f1a22;
+  color: var(--text);
+}
+.card button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--accent);
+  color: #08131a;
+  font-weight: 600;
+  cursor: pointer;
+}
+.card .note { color: var(--muted); font-size: 13px; }
+
+.hidden { display: none; }
+
+.controls {
+  display: flex; justify-content: space-between; align-items: center;
+  margin: 16px;
+}
+.badge {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 6px 10px;
+  color: var(--muted);
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  padding: 16px;
+}
+.day-cell {
+  background: #0f1a22;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  min-height: 120px;
+  padding: 8px;
+  display: flex; flex-direction: column; gap: 6px;
+  position: relative;
+}
+.day-cell .date-label {
+  color: var(--muted);
+  font-size: 12px;
+}
+.day-cell.selected {
+  outline: 2px solid var(--accent);
+}
+
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #163147;
+  color: var(--text);
+  font-size: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+.pill .pill-check { cursor: pointer; }
+.pill .pill-text.strike { text-decoration: line-through; color: var(--muted); }
+
+.panel {
+  margin: 16px;
+  padding: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.panel h3 { margin-top: 0; }
+.event-form {
+  display: grid;
+  grid-template-columns: 2fr 1fr 80px 120px;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.event-form input, .event-form button {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #0f1a22;
+  color: var(--text);
+}
+.event-form button {
+  background: var(--accent);
+  color: #08131a; font-weight: 600;
+}
+
+.event-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.event-item {
+  display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center;
+  padding: 8px; border: 1px solid var(--border); border-radius: 8px; background: #0f1a22;
+}
+.event-pill { display: inline-flex; align-items: center; gap: 10px; }
+.item-text.strike { text-decoration: line-through; color: var(--muted); }
+
+.event-actions button {
+  padding: 6px 10px; border-radius: 8px; border: 1px solid var(--border);
+  background: #13202b; color: var(--text); cursor: pointer;
+}
+.event-actions button.edit-btn:hover { background: #183045; }
+.event-actions button.delete-btn { border-color: #3c2730; }
+.event-actions button.delete-btn:hover { background: #3c2730; color: #ffd7d7; }
