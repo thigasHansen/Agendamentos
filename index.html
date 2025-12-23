@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Budget Calendar</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="supabaseClient.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo-wrap">
+      <img src="logo.png" alt="Logo" class="logo"/>
+    </div>
+    <div class="month-nav">
+      <button id="prevMonthBtn" aria-label="Previous month">‹</button>
+      <h1 id="monthTitle">December 2025</h1>
+      <button id="nextMonthBtn" aria-label="Next month">›</button>
+    </div>
+    <div class="day-summary">
+      <div class="summary-item"><span class="label">Total:</span> <span id="sumTotal">0</span></div>
+      <div class="summary-item"><span class="label">Used:</span> <span id="sumUsed">0</span></div>
+      <div class="summary-item"><span class="label">Remaining:</span> <span id="sumRemaining">0</span></div>
+    </div>
+  </header>
+
+  <main id="appRoot">
+    <section id="authSection" class="card">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <label>Email
+          <input type="email" id="email" required/>
+        </label>
+        <label>Password
+          <input type="password" id="password" required/>
+        </label>
+        <button type="submit">Sign in</button>
+        <p class="note">No signup here—use existing credentials.</p>
+      </form>
+    </section>
+
+    <section id="calendarSection" class="hidden">
+      <div class="controls">
+        <button id="logoutBtn">Logout</button>
+        <div id="roleBadge" class="badge">Role: —</div>
+      </div>
+
+      <div id="calendarGrid" class="calendar"></div>
+
+      <div id="eventPanel" class="panel">
+        <h3 id="panelTitle">Events on <span id="selectedDateLabel">—</span></h3>
+
+        <form id="eventForm" class="event-form">
+          <input type="text" id="eventName" placeholder="Name" required/>
+          <input type="number" id="eventValue" placeholder="Value" min="0" step="1" required/>
+          <input type="color" id="eventColor" value="#6AA9FF"/>
+          <button type="submit">Add event</button>
+        </form>
+
+        <ul id="eventList" class="event-list"></ul>
+      </div>
+    </section>
+  </main>
+
+  <template id="pillTemplate">
+    <div class="pill">
+      <input type="checkbox" class="pill-check"/>
+      <span class="pill-text"></span>
+    </div>
+  </template>
+
+  <template id="eventItemTemplate">
+    <li class="event-item">
+      <div class="event-pill">
+        <input type="checkbox" class="item-check"/>
+        <span class="item-text"></span>
+      </div>
+      <div class="event-actions">
+        <button class="edit-btn">Edit</button>
+        <button class="delete-btn">Delete</button>
+      </div>
+    </li>
+  </template>
+
+</body>
+</html>
