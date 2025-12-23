@@ -1,7 +1,7 @@
 // supabaseClient.js
 // Edit these two lines with your Supabase project values.
 const SUPABASE_URL = "https://tecbuwpdhhlbzgjadego.supabase.co";
-const SUPABASE_ANON_KEY = "tecbuwpdhhlbzgjadego";
+const SUPABASE_ANON_KEY = "sb_publishable_DDNV8FDFpgYoEelsTk0zbQ_AL7oePju";
 
 window.supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
