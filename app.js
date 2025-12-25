@@ -1,3 +1,9 @@
+if (window.__APP_JS_LOADED__) {
+  console.warn("app.js loaded twice — ignoring second load");
+  throw new Error("Duplicate load"); 
+} 
+window.__APP_JS_LOADED__ = true;
+
 // ======================
 // CONFIG: EDIT THIS PART
 // ======================
