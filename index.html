@@ -767,6 +767,7 @@
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     // Intervalo do calendário: Dez 2025 → Dez 2026
+    const today = new Date();
     const MIN_DATE = new Date(2025, 11, 1);
     const MAX_DATE = new Date(2026, 11, 31);
 
