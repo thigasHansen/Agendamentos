@@ -767,7 +767,6 @@
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     // Intervalo do calendário: Dez 2025 → Dez 2026
-    const today = new Date();
     const MIN_DATE = new Date(2025, 11, 1);
     const MAX_DATE = new Date(2026, 11, 31);
 
@@ -783,7 +782,8 @@
     // -----------------------------
 
     let currentUser = null;
-    let currentMonth = new Date(2025, 11, 1);
+    let currentMonth = new Date(); // today’s month
+    currentMonth = clampToRange(new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1));
     let selectedDate = null;
     let eventsByDate = new Map();
     let selectedEventId = null;
@@ -1494,8 +1494,13 @@
 
     (async function init() {
       renderCalendar();
-      resetEventForm();
+            resetEventForm();
       updateQuickLimitSummary();
+
+      const today = new Date(); 
+      if (today >= MIN_DATE && today <= MAX_DATE) { 
+        selectDate(today); 
+      }
 
       const { data: { session } } = await supabaseClient.auth.getSession();
       await handleAuthChange(session);
